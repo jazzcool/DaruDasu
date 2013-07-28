@@ -10,6 +10,7 @@
 #import "ASIHTTPRequest.h"
 #import "JSON.h"
 #import "DetectNetworkConnection.h"
+#import "LoaderView.h"
 
 @interface RegisterViewController ()
 
@@ -59,6 +60,15 @@
         return;
         
     }
+    
+    if(IS_IPHONE_5) {
+        _loaderView = [[LoaderView alloc] initWithFrame:CGRectMake(0, 0, 320, HEIGHT_IPHONE_5)];
+    } else {
+        _loaderView = [[LoaderView alloc] initWithFrame:CGRectMake(0, 0, 320, HEIGHT_IPHONE_4)];
+    }
+    
+    [self.view.window addSubview:_loaderView];
+    [_loaderView showLoader];
 
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     
@@ -86,9 +96,13 @@
     [request setDelegate:self];
     [request setCompletionBlock:^{
         NSString *responseString = [request responseString];
+        [_loaderView.indicator stopAnimating];
+        [_loaderView removeFromSuperview];
         NSLog(@"Response: %@", responseString);
     }];
     [request setFailedBlock:^{
+        [_loaderView.indicator stopAnimating];
+        [_loaderView removeFromSuperview];
         NSError *error = [request error];
         NSLog(@"Error: %@", error.localizedDescription);
     }];

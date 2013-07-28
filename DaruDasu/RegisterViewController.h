@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class LoaderView;
+
+
 @interface RegisterViewController : UIViewController <UITextFieldDelegate>
 {
     
@@ -19,6 +22,8 @@
     NSString    *_strGender;
     UIActionSheet *_actionSheet;
     UIDatePicker *_datePicker;
+    
+    LoaderView *_loaderView;
 }
 - (IBAction)onClickRegister:(id)sender;
 - (IBAction)resineKeyBoard:(id)sender;
