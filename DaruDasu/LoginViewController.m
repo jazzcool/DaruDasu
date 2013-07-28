@@ -88,9 +88,20 @@
     [request setCompletionBlock:^{
         NSString *responseString = [request responseString];
         NSLog(@"Response: %@", responseString);
+        if (responseString.length == 0) {
+            
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error!" message:@"User Name or password wrong?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+            [alert show];
+            alert = nil;
+        }
+        
     }];
     [request setFailedBlock:^{
         NSError *error = [request error];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error!" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alert show];
+        alert = nil;
+        
         NSLog(@"Error: %@", error.localizedDescription);
     }];
     
