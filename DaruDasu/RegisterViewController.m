@@ -4,7 +4,7 @@
 //
 //  Created by shahid on 7/9/13.
 //
-//
+
 
 #import "RegisterViewController.h"
 #import "ASIHTTPRequest.h"
@@ -107,7 +107,6 @@
         NSLog(@"Error: %@", error.localizedDescription);
     }];
     
-    // 6
     [request startAsynchronous];
 
 }

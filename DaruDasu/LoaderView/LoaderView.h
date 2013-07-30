@@ -1,6 +1,5 @@
 //
 //  HUD.h
-//  SmartLayover
 //
 //  Created by Nazkat on 07/11/12.
 //  Copyright (c) 2012 . All rights reserved.
